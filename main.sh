@@ -10,10 +10,10 @@
     
 menu(){
     echo -e "${MENU}*******************************************************************${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 1)${MENU} Execute and configure ansible directly in my computer      **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 1)${MENU} Install and configure ansible directly in my computer      **${NORMAL}"
     echo -e "${MENU}*                                                                 *${NORMAL}"
-    echo -e "${MENU}**${NUMBER} 2)${MENU} Create an amazon EC2 instance and configure ansible within **${NORMAL}"
-    echo -e "${MENU}**${NUMBER}${MENU} (You must have an Amazon Key!)                                **${NORMAL}"
+    echo -e "${MENU}**${NUMBER} 2)${MENU} Create an amazon EC2 instance directly (I already have Ansible) **${NORMAL}"
+    echo -e "${MENU}**${NUMBER}${MENU} (Remember that you must have an Amazon Key!)                 **${NORMAL}"
     echo -e "${MENU}*                                                                 *${NORMAL}"
     echo -e "${MENU}*******************************************************************${NORMAL}"
     echo -e "${ENTER_LINE}Please enter a menu option and enter OR ${RED_TEXT} press enter to exit. ${NORMAL}"
@@ -55,14 +55,17 @@ function ansibleInstallation(){
             echo -e "${RED_TEXT}Ansible was not correctly installed.\n${NORMAL}"
         fi
     fi
-    
+    advise
+}
+#Function that advises of the ssh-agent
+function advise(){
     echo -e "${RED_TEXT}Please remember that you need to have your SSH keys configured, \nbefore you proceed with the process.\n${NORMAL}"
     echo -e "${MENU}You can configure your keys using:${NORMAL}"
     echo -e "${NUMBER}    ssh-agent bash${NORMAL}"
     echo -e "${NUMBER}    ssh-add pathTOyourKey/keyName.pem\n${NORMAL}"
     echo -e "${RED_TEXT}(The key must have special permissions (400 or 600), use chmod for that.${NORMAL}"
-    
 }
+    
 #Function that fills create_ec2_Instance.yml file
 function instanceParameters(){
     echo -e "${NUMBER}Press [ENTER] to leave default values.${NORMAL}"
@@ -110,13 +113,20 @@ while [ opt != '' ]
     else
         case $opt in
         1) clear;
-        option_picked "Beginning work...";
+        option_picked "Installing ansible...";
         ansibleInstallation
         ;;
 
         2) clear;
-            option_picked "Option 2 Picked";
-            ;;
+        option_picked "Option 2 Picked";
+        if yum list installed ansible >/dev/null 2>&1; then
+            advise
+            environmentValues
+            instanceParameters
+        else
+            echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
+        fi
+        ;;
 
         x)exit;
         ;;
