@@ -160,6 +160,8 @@ while [ opt != '' ]
             cd /etc/ansible
             sudo rm -r -f hosts
             sudo sh -c 'echo "127.0.0.1" >> hosts'
+            cd
+            cd AnsiblePlaybooks
             ansible-playbook create_ec2_Instance.yml
             chooseRepo
             ansible-playbook packagesInstall.yml
