@@ -15,7 +15,6 @@ wget http://www.imagemagick.org/download/linux/CentOS/x86_64/ImageMagick-6.8.9-1
 
 yum localinstall ImageMagick-6.8.9-10.x86_64.rpm --skip-broken
 cd
-rm -r -f ImageMagick
 mkdir REPO1
 mkdir REPO2
 
