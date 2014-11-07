@@ -159,8 +159,7 @@ while [ opt != '' ]
             instanceParameters
             echo -e "${NUMBER}Got it all. Trying to launch the instance...\n\n${NORMAL}"
             ansible-playbook create_ec2_Instance.yml
-            
-            
+            chooseRepo
         else
             echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
         fi
