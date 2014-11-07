@@ -71,6 +71,11 @@ function advise(){
 #Function that fills create_ec2_Instance.yml file
 function instanceParameters(){
     echo -e "${NUMBER}Press [ENTER] to leave default values.${NORMAL}"
+     echo -e "${NUMBER}Please, specify the name for the security group:${NORMAL}"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/DefaultGroup/$zone/g" create_ec2_Instance.yml
+    fi
     echo -e "${NUMBER}Please, specify the zone where the instance will be created: (Ex.: sa-east-1a)${NORMAL}"
     read zone
     if [ "$zone" != "" ]; then
