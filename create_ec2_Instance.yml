@@ -53,3 +53,5 @@
     local_action: shell sudo sh -c "echo -e '[Edumedia]\n{{item.public_ip}}' >> hosts" chdir=/etc/ansible/
     with_items: ec2.instances
     
+  - name: Give it one minute...
+    pause: minutes=1
