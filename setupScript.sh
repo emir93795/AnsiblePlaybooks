@@ -3,11 +3,14 @@ yum -y update
 useradd -m nodejs
 passwd –-stdin nodejs
 
-yum install -y epel-release
+wget http://nodejs.org/dist/node-latest.tar.gz
+tar zxvf node-latest.tar.gz
+cd node-v0.10.33
+./configure
+make install
 yum install -y git
 yum install -y automake
 yum install -y unzip
-yum install -y nodejs
 yum install -y npm
 npm install upstart
 
