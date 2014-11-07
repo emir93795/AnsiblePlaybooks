@@ -99,10 +99,41 @@ function instanceParameters(){
     if [ "$zone" != "" ]; then
         sed -i "s/vpc-e4921349/$zone/g" create_ec2_Instance.yml
     fi
-    echo -e "${NUMBER}The tag for the instance will be 'Edumedia'.${NORMAL}"
-
+    echo -e "${NUMBER}Define the vpc-id: (Ex.: vpc-e4962981)${NORMAL}"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/vpc-e4962981/$zone/g" create_ec2_Instance.yml
+    fi
+    echo -e "${NUMBER}The tag for the instance will be 'Edumedia'.\n${NORMAL}"
 }
 
+#Function that fills S3 and MONGO parameters
+function chooseRepo(){
+    
+    echo -e "${NUMBER}Follow this steps to specify which repositories are going to be cloned to the instance.\n${NORMAL}"
+    
+    echo -e "${NUMBER}Which is the owner's name for the first repository? (Ex.: github.com/${RED_TEXT}USER${NORMAL})"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/utong/$zone/g" setupScript.sh
+    fi 
+    echo -e "${NUMBER}And the repository name?(Ex.: github.com/USER/${RED_TEXT}REPONAME${NORMAL}"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/nexus/$zone/g" setupScript.sh
+    fi
+    echo -e "${NUMBER}Which is the owner's name for the second repository? ${NORMAL}"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/pencil/$zone/g" setupScript.sh
+    fi
+    echo -e "${NUMBER}And the repository name?${NORMAL}"
+    read zone
+    if [ "$zone" != "" ]; then
+        sed -i "s/galaxy/$zone/g" setupScript.sh
+    fi
+   
+}
 #Funtion that installs moodle using ansible
 #Beginning menu
 clear
@@ -116,6 +147,7 @@ while [ opt != '' ]
         1) clear;
         option_picked "Installing ansible...";
         ansibleInstallation
+        echo
         break;
         ;;
 
@@ -125,6 +157,10 @@ while [ opt != '' ]
             advise
             environmentValues
             instanceParameters
+            echo -e "${NUMBER}Got it all. Trying to launch the instance...\n\n${NORMAL}"
+            ansible-playbook create_ec2_Instance.yml
+            
+            
         else
             echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
         fi
