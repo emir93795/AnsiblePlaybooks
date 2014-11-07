@@ -162,6 +162,7 @@ while [ opt != '' ]
             sudo sh -c 'echo "127.0.0.1" >> hosts'
             ansible-playbook create_ec2_Instance.yml
             chooseRepo
+            ansible-playbook packagesInstall.yml
         else
             echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
         fi
