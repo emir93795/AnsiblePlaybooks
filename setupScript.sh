@@ -5,6 +5,8 @@ passwd –-stdin nodejs
 
 yum install -y epel-release
 yum install -y git
+yum install -y automake
+yum install -y unzip
 yum install -y nodejs
 yum install -y npm
 npm install upstart
@@ -23,3 +25,23 @@ git clone git://github.com/utong/nexus
 cd
 cd REPO2
 git clone git://github.com/pencil/galaxy
+cd
+
+yum update all
+yum install -y gcc libstdc++-devel gcc-c++ fuse fuse-devel curl-devel libxml2-devel openssl-devel mailcap
+git clone git://github.com/s3fs-fuse/s3fs-fuse.git
+cd s3fs-fuse
+./autogen.sh
+./configure
+make
+make install
+
+sudo sh -c 'echo "uoc-bucket:accesskey:secretkey" >> /etc/passwd-s3fs'
+chmod 640 /etc/passwd-s3fs
+cd
+mkdir /content-s3
+mkdir /tmp/cache
+chmod 777 /tmp/cache/
+
+s3fs -o use_cache=/tmp/cache uoc-bucket /content-s3
+
