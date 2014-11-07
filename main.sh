@@ -114,6 +114,7 @@ while [ opt != '' ]
         case $opt in
         1) clear;
         option_picked "Installing ansible...";
+        echo "funciona"
         ansibleInstallation
         ;;
 
