@@ -26,11 +26,13 @@ function environmentValues(){
     read zone
     if [ "$zone" != "" ]; then
         export AWS_ACCESS_KEY=$zone
+        sed -i "s/accesskey/$zone/g" setupScript.sh
     fi
     echo -e "${MENU}Please, specify the amazon secret key:${NORMAL}"
     read zone
     if [ "$zone" != "" ]; then
         export AWS_SECRET_KEY=$zone
+        sed -i "s/secretkey/$zone/g" setupScript.sh
     fi
 }
 
