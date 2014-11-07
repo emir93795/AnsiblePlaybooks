@@ -61,9 +61,9 @@ function ansibleInstallation(){
 function advise(){
     echo -e "${RED_TEXT}Please remember that you need to have your SSH keys configured, \nbefore you proceed with the process.\n${NORMAL}"
     echo -e "${MENU}You can configure your keys using:${NORMAL}"
-    echo -e "${NUMBER}    ssh-agent bash${NORMAL}"
-    echo -e "${NUMBER}    ssh-add pathTOyourKey/keyName.pem\n${NORMAL}"
-    echo -e "${RED_TEXT}(The key must have special permissions (400 or 600), use chmod for that.${NORMAL}"
+    echo -e "${MENU}    ssh-agent bash${NORMAL}"
+    echo -e "${MENU}    ssh-add   pathTOyourKey/keyName.pem\n${NORMAL}"
+    echo -e "${RED_TEXT}(The key must have special permissions (400 or 600), use chmod for that.\n\n${NORMAL}"
 }
     
 #Function that fills create_ec2_Instance.yml file
@@ -99,7 +99,8 @@ function instanceParameters(){
     if [ "$zone" != "" ]; then
         sed -i "s/vpc-e4921349/$zone/g" create_ec2_Instance.yml
     fi
-    echo -e "${NUMBER}Instance tag will be 'Moodle'. ${NORMAL}"
+    echo -e "${NUMBER}The tag for the instance will be 'Edumedia'.${NORMAL}"
+
 }
 
 #Funtion that installs moodle using ansible
@@ -121,15 +122,13 @@ while [ opt != '' ]
         2) clear;
         option_picked "Option 2 Picked";
         if yum list installed ansible >/dev/null 2>&1; then
-            echo "Ha passat el first"
             advise
-            echo "Ha passat l'advise"
             environmentValues
-            echo "Ha passat environmentValues"
             instanceParameters
         else
             echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
         fi
+        break;
         ;;
 
         x)exit;
