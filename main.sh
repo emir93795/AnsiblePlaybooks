@@ -111,7 +111,6 @@ function instanceParameters(){
     if [ "$zone" != "" ]; then
         sed -i "s/vpc-e4962981/$zone/g" create_ec2_Instance.yml
     fi
-    echo -e "${NUMBER}The tag for the instance will be 'Edumedia'.\n${NORMAL}"
 }
 
 #Function that fills S3 and MONGO parameters
