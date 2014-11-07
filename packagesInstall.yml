@@ -1,6 +1,6 @@
 ---
 - name: Transfering and executing the installation script
-  hosts: Edumedia
+  hosts: DefaultGroup
   user: ec2-user
   sudo: yes
   
