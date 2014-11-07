@@ -34,7 +34,7 @@
       region: sa-east-1
       key_name: AmazonKeyValue
       vpc_subnet_id: vpc-e4921349
-      group: EdumediaGroup
+      group: EduMedia
       wait: yes
     register: ec2
     
