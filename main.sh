@@ -157,7 +157,9 @@ while [ opt != '' ]
             advise
             environmentValues
             instanceParameters
-            echo -e "${NUMBER}Got it all. Trying to launch the instance...\n\n${NORMAL}"
+            cd /etc/ansible
+            sudo rm -r -f hosts
+            sudo sh -c 'echo "127.0.0.1" >> hosts'
             ansible-playbook create_ec2_Instance.yml
             chooseRepo
         else
