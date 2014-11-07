@@ -115,6 +115,7 @@ while [ opt != '' ]
         1) clear;
         option_picked "Installing ansible...";
         ansibleInstallation
+        break;
         ;;
 
         2) clear;
