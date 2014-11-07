@@ -23,4 +23,4 @@ cd REPO1
 git clone git://github.com/utong/nexus
 cd
 cd REPO2
-git clone git://github.com/alerta/galaxy
+git clone git://github.com/pencil/galaxy
