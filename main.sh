@@ -114,15 +114,17 @@ while [ opt != '' ]
         case $opt in
         1) clear;
         option_picked "Installing ansible...";
-        echo "funciona"
         ansibleInstallation
         ;;
 
         2) clear;
         option_picked "Option 2 Picked";
         if yum list installed ansible >/dev/null 2>&1; then
+            echo "Ha passat el first"
             advise
+            echo "Ha passat l'advise"
             environmentValues
+            echo "Ha passat environmentValues"
             instanceParameters
         else
             echo -e "${RED_TEXT}Ansible is not installed. Please choose the first option instead.\n${NORMAL}"
