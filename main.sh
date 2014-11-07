@@ -140,7 +140,7 @@ function chooseRepo(){
     fi
    
 }
-#Funtion that installs moodle using ansible
+
 #Beginning menu
 clear
 menu
