@@ -25,9 +25,34 @@ mkdir REPO2
 
 cd REPO1
 git clone git://github.com/utong/nexus
+cd nexus
+for i in config/*; do
+    sed -i 's/accesskey/S3_ACCESS_KEY/g' $i
+done
+for i in config/*; do
+    sed -i 's/secretkey/S3_SECRET_KEY/g' $i
+done
+for i in config/*; do
+    sed -i 's/ipmongo/IP_MONGO/g' $i
+done
+for i in config/*; do
+    sed -i 's/bucketname/S3_BUCKET_NAME/g' $i
+done
 cd
 cd REPO2
 git clone git://github.com/pencil/galaxy
+for i in config/*; do
+    sed -i 's/accesskey/S3_ACCESS_KEY/g' $i
+done
+for i in config/*; do
+    sed -i 's/secretkey/S3_SECRET_KEY/g' $i
+done
+for i in config/*; do
+    sed -i 's/ipmongo/IP_MONGO/g' $i
+done
+for i in config/*; do
+    sed -i 's/bucketname/S3_BUCKET_NAME/g' $i
+done
 cd
 
 yum update all
@@ -39,12 +64,12 @@ cd s3fs-fuse
 make
 make install
 
-sudo sh -c 'echo "uoc-bucket:accesskey:secretkey" >> /etc/passwd-s3fs'
+sudo sh -c 'echo "bucketname:accesskey:secretkey" >> /etc/passwd-s3fs'
 chmod 640 /etc/passwd-s3fs
 cd
 mkdir /content-s3
 mkdir /tmp/cache
 chmod 777 /tmp/cache/
 
-s3fs -o use_cache=/tmp/cache uoc-bucket /content-s3
+s3fs -o use_cache=/tmp/cache bucketname /content-s3
 
