@@ -1,0 +1,9 @@
+---
+- name: Transfering and executing the installation script
+  hosts: Edumedia
+  user: ec2-user
+  sudo: yes
+  
+  tasks:
+  - name: Transfering and executing the script in the ec2 instance...
+    script: setupScript.sh
