@@ -19,8 +19,8 @@ rm -r -f ImageMagick
 mkdir REPO1
 mkdir REPO2
 
-cd REPO1
-git clone git://github.com/utong/nexus
-cd
-cd REPO2
-git clone git://github.com/pencil/galaxy
+#cd REPO1
+#git clone git://github.com/utong/nexus
+#cd
+#cd REPO2
+#git clone git://github.com/pencil/galaxy
