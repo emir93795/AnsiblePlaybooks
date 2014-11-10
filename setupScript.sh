@@ -1,8 +1,9 @@
 #!/bin/bash
 yum -y update
 useradd -m nodejs
-passwd –-stdin nodejs
+echo "nodejs" | passwd nodejs --stdin
 
+yum groupinstall -y "Development Tools"
 wget http://nodejs.org/dist/node-latest.tar.gz
 tar zxvf node-latest.tar.gz
 cd node-v0.10.33
@@ -11,7 +12,6 @@ make install
 yum install -y git
 yum install -y automake
 yum install -y unzip
-yum install -y npm
 npm install upstart
 
 mkdir ImageMagick
@@ -27,10 +27,10 @@ cd REPO1
 git clone git://github.com/utong/nexus
 cd nexus
 for i in config/*; do
-    sed -i 's/accesskey/S3_ACCESS_KEY/g' $i
+    sed -i 's/accesskey/_S3_ACCESS_KEY_/g' $i
 done
 for i in config/*; do
-    sed -i 's/secretkey/S3_SECRET_KEY/g' $i
+    sed -i 's/secretkey/_S3_SECRET_KEY_/g' $i
 done
 for i in config/*; do
     sed -i 's/ipmongo/IP_MONGO/g' $i
@@ -41,11 +41,12 @@ done
 cd
 cd REPO2
 git clone git://github.com/pencil/galaxy
+cd galaxy
 for i in config/*; do
-    sed -i 's/accesskey/S3_ACCESS_KEY/g' $i
+    sed -i 's/accesskey/_S3_ACCESS_KEY_/g' $i
 done
 for i in config/*; do
-    sed -i 's/secretkey/S3_SECRET_KEY/g' $i
+    sed -i 's/secretkey/_S3_SECRET_KEY_/g' $i
 done
 for i in config/*; do
     sed -i 's/ipmongo/IP_MONGO/g' $i
@@ -67,9 +68,9 @@ make install
 sudo sh -c 'echo "bucketname:accesskey:secretkey" >> /etc/passwd-s3fs'
 chmod 640 /etc/passwd-s3fs
 cd
-mkdir /content-s3
+mkdir content-s3
 mkdir /tmp/cache
 chmod 777 /tmp/cache/
 
-s3fs -o use_cache=/tmp/cache bucketname /content-s3
+#s3fs -o use_cache=/tmp/cache bucketname content-s3
 
