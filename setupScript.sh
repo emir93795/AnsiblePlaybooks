@@ -27,10 +27,10 @@ cd REPO1
 git clone git://github.com/utong/nexus
 cd nexus
 for i in config/*; do
-    sed -i 's/accesskey/_S3_ACCESS_KEY_/g' $i
+    sed -i "s/accesskey/_S3\_ACCESS\_KEY_/g" $i
 done
 for i in config/*; do
-    sed -i 's/secretkey/_S3_SECRET_KEY_/g' $i
+    sed -i "s/secretkey/_S3\_SECRET\_KEY_/g" $i
 done
 for i in config/*; do
     sed -i 's/ipmongo/IP_MONGO/g' $i
@@ -43,10 +43,10 @@ cd REPO2
 git clone git://github.com/pencil/galaxy
 cd galaxy
 for i in config/*; do
-    sed -i 's/accesskey/_S3_ACCESS_KEY_/g' $i
+    sed -i "s/accesskey/_S3\_ACCESS\_KEY_/g" $i
 done
 for i in config/*; do
-    sed -i 's/secretkey/_S3_SECRET_KEY_/g' $i
+    sed -i "s/secretkey/_S3\_SECRET\_KEY_/g" $i
 done
 for i in config/*; do
     sed -i 's/ipmongo/IP_MONGO/g' $i
