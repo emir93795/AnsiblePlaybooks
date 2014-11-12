@@ -5,5 +5,5 @@
   sudo: yes
   
   tasks:
-  - name: Transfering and executing the script in the ec2 instance...
+  - name: Transfering and executing the script in the ec2 instance... this could take a while (be patient).
     script: setupScript.sh
